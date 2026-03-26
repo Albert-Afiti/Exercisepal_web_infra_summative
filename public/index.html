@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExercisePal — Your Daily Fitness Trainer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <i class="fas fa-dumbbell logo-icon"></i>
+        <span class="logo-text">ExercisePal</span>
+      </div>
+      <nav class="tab-nav">
+        <button class="tab-btn active" data-tab="daily">
+          <i class="fas fa-fire"></i> Daily Workout
+        </button>
+        <button class="tab-btn" data-tab="library">
+          <i class="fas fa-magnifying-glass"></i> Exercise Library
+        </button>
+        <button class="tab-btn" data-tab="weekly">
+          <i class="fas fa-calendar-days"></i> Weekly Plan
+        </button>
+        <button class="tab-btn" data-tab="gyms">
+          <i class="fas fa-location-dot"></i> Nearby Gyms
+        </button>
+      </nav>
+      <button id="theme-btn" class="theme-btn">
+        <i class="fas fa-sun"></i> Light Mode
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- ── Daily Workout ── -->
+    <section id="tab-daily" class="tab-content active">
+      <div class="mode-toggle">
+        <button class="mode-btn active" id="gym-btn" onclick="setMode('gym')">
+          <i class="fas fa-dumbbell"></i> Gym Workout
+        </button>
+        <button class="mode-btn" id="home-btn" onclick="setMode('home')">
+          <i class="fas fa-house"></i> Home Workout
+        </button>
+      </div>
+      <div id="daily-content">
+        <div class="loading"><div class="spinner"></div><p>Loading today's workout…</p></div>
+      </div>
+    </section>
+
+    <!-- ── Exercise Library ── -->
+    <section id="tab-library" class="tab-content">
+      <div class="section-header">
+        <h2>Exercise Library</h2>
+        <p>Search from hundreds of exercises with step-by-step instructions and animated demonstrations</p>
+      </div>
+      <div class="search-bar">
+        <input
+          type="text"
+          id="exercise-search"
+          placeholder="Search exercise by name…"
+          onkeydown="if(event.key==='Enter') searchExercises()"
+          autocomplete="off"
+        >
+        <select id="bodypart-filter">
+          <option value="">Filter by body part</option>
+        </select>
+        <select id="sort-filter">
+          <option value="">Sort by</option>
+          <option value="name-asc">Name A–Z</option>
+          <option value="name-desc">Name Z–A</option>
+          <option value="difficulty-asc">Difficulty: Easy first</option>
+          <option value="difficulty-desc">Difficulty: Hard first</option>
+          <option value="equipment">Equipment</option>
+        </select>
+        <button class="btn-primary" onclick="searchExercises()">
+          <i class="fas fa-magnifying-glass"></i> Search
+        </button>
+      </div>
+      <div id="library-results">
+        <div class="placeholder-msg">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&q=80"
+               alt="Exercise library" class="placeholder-img"
+               onerror="this.style.display='none'">
+          <p>Search for an exercise or pick a body part above</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Weekly Plan ── -->
+    <section id="tab-weekly" class="tab-content">
+      <div class="section-header">
+        <h2>Weekly Training Plan</h2>
+        <p>Your 7-day workout schedule — click any day to preview gym or home exercises</p>
+      </div>
+      <div id="weekly-content">
+        <div class="loading"><div class="spinner"></div><p>Loading weekly plan…</p></div>
+      </div>
+    </section>
+
+    <!-- ── Nearby Gyms ── -->
+    <section id="tab-gyms" class="tab-content">
+      <div class="section-header">
+        <h2>Nearby Gyms &amp; Fitness Centers</h2>
+        <p>Find gyms near your location in Kigali, Rwanda</p>
+      </div>
+      <div class="gym-actions">
+        <button class="btn-primary btn-location" onclick="findGyms(true)">
+          <i class="fas fa-location-crosshairs"></i> Use My Location
+        </button>
+        <button class="btn-secondary" onclick="findGyms(false)">
+          <i class="fas fa-city"></i> Show All Kigali Gyms
+        </button>
+      </div>
+      <div id="gyms-list">
+        <div class="placeholder-msg">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=80"
+               alt="Gym" class="placeholder-img"
+               onerror="this.style.display='none'">
+          <p>Click a button above to find fitness centers near you</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>
+      ExercisePal &mdash; Exercise data by
+      <a href="https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb" target="_blank" rel="noopener">ExerciseDB</a>
+      &nbsp;&middot;&nbsp; Gym locations by
+      <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a>
+    </p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
